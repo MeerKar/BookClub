@@ -1,0 +1,33 @@
+[
+  {
+    "name": "Epic Storytellers",
+    "books": ["665000f5428a2cc9c7bd1b14"],
+    "users": ["665000f5428a2cc9c7bd1aee"]
+  },
+  {
+    "name": "Realms of Reality",
+    "books": [],
+    "users": ["665000f5428a2cc9c7bd1aee"]
+  },
+  {
+    "name": "Portraits in Prose",
+    "books": ["665000f5428a2cc9c7bd1b14"],
+    "users": ["665000f5428a2cc9c7bd1aee"]
+  },
+  {
+    "name": "Little Page Turners",
+    "books": ["665000f5428a2cc9c7bd1b14"],
+    "users": ["665000f5428a2cc9c7bd1aee"]
+  },
+  {
+    "name": "Digital Innovators",
+    "books": ["665000f5428a2cc9c7bd1b14"],
+    "users": ["665000f5428a2cc9c7bd1aee"]
+
+  },
+  {
+  "name": "Mystery & Mayhem",
+    "books": ["665000f5428a2cc9c7bd1b14"],
+    "users": ["665000f5428a2cc9c7bd1aee"]
+}
+]

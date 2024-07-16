@@ -1,0 +1,111 @@
+[
+  {
+    "title": "Don Quixote",
+    "author": "Miguel de Cervantes",
+    "image": "https://covers.openlibrary.org/b/id/13538218-L.jpg"
+  },
+  {
+    "title": "A Tale of Two Cities",
+    "image":
+      "https://m.media-amazon.com/images/I/91C0MECqJ+L._AC_UF1000,1000_QL80_.jpg",
+    "author": "Charles Dickens"
+  },
+  {
+    "title": "The Lord of the Rings",
+    "image":
+      "https://m.media-amazon.com/images/I/7125+5E40JL._AC_UF1000,1000_QL80_.jpg",
+    "author": "J.R.R. Tolkien"
+  },
+  {
+    "title": "The Little Prince",
+    "image":
+      "https://m.media-amazon.com/images/I/81G2R0luQJL._AC_UF1000,1000_QL80_.jpg",
+    "author": "Antoine de Saint-Exupéry"
+  },
+  {
+    "title": "Harry Potter and the Sorcerer's Stone",
+    "image":
+      "https://m.media-amazon.com/images/I/515W3XN03YL._AC_UF1000,1000_QL80_.jpg",
+    "author": "J.K. Rowling"
+  },
+  {
+    "title": "And Then There Were None",
+    "image":
+      "https://m.media-amazon.com/images/I/71EXMl7hbBL._AC_UF1000,1000_QL80_.jpg",
+    "author": "Agatha Christie"
+  },
+  {
+    "title": "The Hobbit",
+    "image":
+      "https://upload.wikimedia.org/wikipedia/en/a/a9/The_Hobbit_trilogy_dvd_cover.jpg",
+    "author": "J.R.R. Tolkien"
+  },
+  {
+    "title": "Dream of the Red Chamber",
+    "image":
+      "https://m.media-amazon.com/images/I/818uRo-OE0L._AC_UF1000,1000_QL80_.jpg",
+    "author": "Cao Xueqin"
+  },
+  {
+    "title": "The Lion, the Witch and the Wardrobe",
+    "image": "https://m.media-amazon.com/images/I/51ucYQIg73L._SX342_SY445_.jpg",
+    "author": "C.S. Lewis"
+  },
+  {
+    "title": "She: A History of Adventure",
+    "image": "https://m.media-amazon.com/images/I/51-Kq1G4Y9L._SL500_.jpg",
+    "author": "H. Rider Haggard"
+  },
+  {
+    "title": "The Catcher in the Rye",
+    "image":
+      "https://npr.brightspotcdn.com/dims4/default/f735808/2147483647/strip/true/crop/363x574+0+0/resize/880x1392!/quality/90/?url=http%3A%2F%2Fnpr-brightspot.s3.amazonaws.com%2Flegacy%2Fsites%2Fwkar%2Ffiles%2Fcatcher_in_the_rye_cover.png",
+    "author": "J.D. Salinger"
+  },
+  {
+    "title": "The Da Vinci Code",
+    "image":
+      "https://m.media-amazon.com/images/I/815WORuYMML._AC_UF1000,1000_QL80_.jpg",
+    "author": "Dan Brown"
+  },
+  {
+    "title": "The Alchemist",
+    "image": "https://covers.openlibrary.org/b/id/45762-L.jpg",
+    "author": "Paulo Coelho"
+  },
+  {
+    "title": "Harry Potter and the Chamber of Secrets",
+    "image": "https://covers.openlibrary.org/b/id/14630506-L.jpg",
+    "author": "J.K. Rowling"
+  },
+  {
+    "title": "Harry Potter and the Prisoner of Azkaban",
+    "image": "https://m.media-amazon.com/images/I/A1D9WdGRYzL._SL1500_.jpg",
+    "author": "J.K. Rowling"
+  },
+  {
+    "title": "Harry Potter and the Goblet of Fire",
+    "image": "https://m.media-amazon.com/images/I/81aTxTMB33L._SL1200_.jpg",
+    "author": "J.K. Rowling"
+  },
+  {
+    "title": "Harry Potter and the Order of the Phoenix",
+    "image": "https://m.media-amazon.com/images/I/71pgI2ou5oL._SL1200_.jpg",
+    "author": "J.K. Rowling"
+  },
+  {
+    "title": "Harry Potter and the Half-Blood Prince",
+    "image": "https://m.media-amazon.com/images/I/61sXBXmAWML._SL1000_.jpg",
+    "author": "J.K. Rowling"
+  },
+  {
+    "title": "Harry Potter and the Deathly Hallows",
+    "image": "https://m.media-amazon.com/images/I/81fKAGD2LyL._SL1500_.jpg",
+    "author": "J.K. Rowling"
+  },
+  {
+    "title": "The Adventures of Sherlock Holmes",
+    "image": "https://m.media-amazon.com/images/I/61W8vD3LBRL._SL1333_.jpg",
+    "author": "Arthur Conan Doyle"
+  }
+]
