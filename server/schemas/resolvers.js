@@ -1,4 +1,3 @@
-// const { AuthenticationError } = require("apollo-server-express");
 const { User, Book, Club, Review, Rating } = require("../models");
 const { signToken } = require("../utils/auth");
 const { GraphQLScalarType } = require("graphql");
@@ -75,8 +74,8 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    addBook: async (parent, { title, author }) => {
-      const book = await Book.create({ title, author });
+    addBook: async (parent, { title, author, image, description }) => {
+      const book = await Book.create({ title, author, image, description });
       return book;
     },
     addReview: async (parent, { bookId, reviewText, userId }, context) => {
@@ -92,7 +91,7 @@ const resolvers = {
         { _id: clubId },
         { $addToSet: { books: bookId } }
       );
-      return;
+      return Club.findOne({ _id: clubId }).populate("books").populate("users");
     },
     addUserToClub: async (parent, { clubId, userId }, context) => {
       if (context.user) {
@@ -100,10 +99,11 @@ const resolvers = {
           { _id: clubId },
           { $addToSet: { users: userId } }
         );
-        return;
+        return Club.findOne({ _id: clubId })
+          .populate("books")
+          .populate("users");
       }
-      throw AuthenticationError;
-      ("You need to be logged in!");
+      throw new AuthenticationError("You need to be logged in!");
     },
     addRating: async (parent, { value, userId, bookId }) => {
       const rating = await Rating.create({ value, userId, bookId });
@@ -127,7 +127,7 @@ const resolvers = {
           new: true,
           runValidators: true,
         }
-      );
+      ).populate("reviews");
       return book;
     },
     removeRating: async (parent, { ratingId }) => {
@@ -135,13 +135,11 @@ const resolvers = {
       return rating;
     },
     addToBookshelf: async (parent, { bookId, userId }) => {
-      console.log(userId, bookId);
       const updatedUser = await User.findOneAndUpdate(
         { _id: userId },
         { $addToSet: { books: bookId } },
         { new: true }
-      );
-      console.log(updatedUser, userId, bookId);
+      ).populate("books");
       return updatedUser;
     },
   },

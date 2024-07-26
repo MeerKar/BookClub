@@ -31,43 +31,43 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/login",
+        path: "login",
         element: <Login />,
       },
       {
-        path: "/signup",
+        path: "signup",
         element: <Signup />,
       },
       {
-        path: "/profiles/:username",
+        path: "profiles/:username",
         element: <ProtectedRoute element={<Profile />} />,
       },
       {
-        path: "/me",
+        path: "me",
         element: <ProtectedRoute element={<Profile />} />,
       },
       {
-        path: "/books/:title",
+        path: "books/:id",
         element: <ProtectedRoute element={<SingleBook />} />,
       },
       {
-        path: "/clubs",
+        path: "clubs",
         element: <ProtectedRoute element={<Clubs />} />,
       },
       {
-        path: "/create-club",
+        path: "create-club",
         element: <ProtectedRoute element={<CreateClub />} />,
       },
       {
-        path: "/join-club",
+        path: "join-club",
         element: <ProtectedRoute element={<JoinClub />} />,
       },
       {
-        path: "/my-bookshelf",
+        path: "my-bookshelf",
         element: <ProtectedRoute element={<MyBookshelf />} />,
       },
       {
-        path: "/bookshelf",
+        path: "bookshelf",
         element: <ProtectedRoute element={<Bookshelf />} />,
       },
     ],

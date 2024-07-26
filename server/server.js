@@ -1,12 +1,14 @@
-require("dotenv").config();
+require("dotenv").config(); // Load environment variables from .env file
+
 const express = require("express");
+const path = require("path");
+const db = require("./config/connection");
+
+const apiRoutes = require("./api"); // Import the API routes
+const { authMiddleware } = require("./utils/auth");
 const { ApolloServer } = require("@apollo/server");
 const { expressMiddleware } = require("@apollo/server/express4");
-const path = require("path");
-const { authMiddleware } = require("./utils/auth");
-const apiRoutes = require("./api"); // Import the new route
 const { typeDefs, resolvers } = require("./schemas");
-const db = require("./config/connection");
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -22,14 +24,14 @@ const startApolloServer = async () => {
   app.use(express.urlencoded({ extended: false }));
   app.use(express.json());
 
-  app.use("/api", apiRoutes); // Use the API routes
-
   app.use(
     "/graphql",
     expressMiddleware(server, {
       context: authMiddleware,
     })
   );
+
+  app.use("/api", apiRoutes); // Use the API routes
 
   if (process.env.NODE_ENV === "production") {
     app.use(express.static(path.join(__dirname, "../client/dist")));

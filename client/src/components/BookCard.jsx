@@ -1,25 +1,23 @@
-import { useNavigate } from "react-router-dom";
-import { Box, Text, Image, Heading } from "@chakra-ui/react";
+import { Box, Image, Text, Button } from "@chakra-ui/react";
+import { Link as RouterLink } from "react-router-dom";
 
 const BookCard = ({ title, author, image, bookId }) => {
-  const navigate = useNavigate();
-
-  const handleClick = () => {
-    navigate(`/books/${bookId}`);
-  };
-
   return (
-    <Box
-      borderWidth="1px"
-      borderRadius="lg"
-      overflow="hidden"
-      onClick={handleClick}
-      cursor="pointer"
-    >
+    <Box borderWidth="1px" borderRadius="lg" overflow="hidden">
       <Image src={image} alt={title} />
-      <Box p="6">
-        <Heading fontSize="xl">{title}</Heading>
-        <Text mt="4">{author}</Text>
+      <Box p={6}>
+        <Text fontWeight="bold" fontSize="lg" mb={2}>
+          {title}
+        </Text>
+        <Text mb={4}>{author}</Text>
+        <Button
+          as={RouterLink}
+          to={`/books/${bookId}`}
+          colorScheme="orange"
+          size="sm"
+        >
+          View Details
+        </Button>
       </Box>
     </Box>
   );

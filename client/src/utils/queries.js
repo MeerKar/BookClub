@@ -38,18 +38,40 @@ export const QUERY_BOOKS = gql`
     }
   }
 `;
-
-//single book
-export const QUERY_SINGLE_BOOK = gql`
-  query getsingleBook($bookId: ID!) {
-    book(bookId: $bookId) {
+export const QUERY_BOOKSHELF = gql`
+  query getBookshelf {
+    bookshelf {
+      id
       title
       author
       image
-      createdAt
     }
   }
 `;
+
+//single book
+
+export const QUERY_SINGLE_BOOK = gql`
+  query getsingleBook($bookId: ID!) {
+    book(bookId: $bookId) {
+      id
+      title
+      author
+      image
+      description
+      createdAt
+      links {
+        site
+        url
+      }
+      reviews {
+        user
+        comment
+      }
+    }
+  }
+`;
+
 //me
 export const QUERY_ME = gql`
   query me {
@@ -118,3 +140,32 @@ export const QUERY_BOOK_BY_TITLE = gql`
     }
   }
 `;
+export const ADD_TO_BOOKSHELF = gql`
+  mutation addToBookshelf($bookId: ID!, $userId: ID!) {
+    addToBookshelf(bookId: $bookId, userId: $userId) {
+      _id
+      username
+      email
+      books {
+        _id
+        title
+        author
+        image
+        description
+        review
+        createdAt
+      }
+    }
+  }
+`;
+// export const ADD_USER = gql`
+//   mutation addUser($username: String!, $email: String!, $password: String!) {
+//     addUser(username: $username, email: $email, password: $password) {
+//       token
+//       user {
+//         _id
+//         username
+//       }
+//     }
+//   }
+// `;

@@ -16,7 +16,10 @@ export const fetchBestSellers = async (listName) => {
     localStorage.setItem(listName, JSON.stringify(books));
     return books;
   } catch (error) {
-    console.error("Error fetching best sellers data:", error);
-    return [];
+    console.error(
+      "Error fetching best sellers data:",
+      error.response?.data || error.message
+    );
+    throw error; // Ensure the error is propagated correctly
   }
 };

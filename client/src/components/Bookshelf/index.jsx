@@ -39,7 +39,7 @@ const Bookshelf = () => {
               <Button
                 as={RouterLink}
                 to={`/books/${book.id}`}
-                colorScheme="teal"
+                colorScheme="orange"
                 mt={2}
               >
                 View Details

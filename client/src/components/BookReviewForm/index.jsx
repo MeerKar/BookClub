@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { useMutation } from "@apollo/client";
+import { Link, useParams } from "react-router-dom";
+import { useMutation, useQuery } from "@apollo/client";
 import {
   Box,
   Button,
@@ -15,65 +15,71 @@ import {
   Alert,
   AlertIcon,
   Image,
+  Spinner,
 } from "@chakra-ui/react";
-
-import { ADD_BOOK } from "../../utils/mutations";
-import { QUERY_BOOKS, QUERY_ME } from "../../utils/queries";
-
+import { ADD_REVIEW } from "../../utils/mutations"; // Ensure this mutation is correct
+import { QUERY_SINGLE_BOOK, QUERY_BOOKS, QUERY_ME } from "../../utils/queries";
 import Auth from "../../utils/auth";
 
 const BookReviewForm = () => {
-  const [formState, setFormState] = useState({
-    title: "FOURTH WING",
-    author: "Rebecca Yarros",
-    image:
-      "https://storage.googleapis.com/du-prd/books/images/9781649374172.jpg",
-    bookReviewText: "",
+  const { id } = useParams();
+  const { loading, data, error } = useQuery(QUERY_SINGLE_BOOK, {
+    variables: { id },
   });
+
+  const [review, setReview] = useState("");
   const [characterCount, setCharacterCount] = useState(0);
+  const [addBookReview, { error: submitError, data: submitData }] = useMutation(
+    ADD_REVIEW,
+    {
+      refetchQueries: [QUERY_BOOKS, "getBooks", QUERY_ME, "me"],
+    }
+  );
 
-  const [addBook, { error, data }] = useMutation(ADD_BOOK, {
-    refetchQueries: [QUERY_BOOKS, "getBooks", QUERY_ME, "me"],
-  });
+  if (loading) {
+    return (
+      <Flex justify="center" align="center" minH="100vh">
+        <Spinner size="xl" />
+      </Flex>
+    );
+  }
 
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
+  if (error) {
+    return (
+      <Container maxW="container.md">
+        <Flex direction="column" align="center" justify="center" minH="100vh">
+          <Text fontSize="xl" color="red.500">
+            An error occurred: {error.message}
+          </Text>
+        </Flex>
+      </Container>
+    );
+  }
 
-    try {
-      await addBook({
-        variables: {
-          ...formState,
-          bookReviewAuthor: Auth.getProfile().data.username,
-        },
-      });
+  const book = data?.book || {};
 
-      setFormState({
-        title: "FOURTH WING",
-        author: "Rebecca Yarros",
-        image:
-          "https://storage.googleapis.com/du-prd/books/images/9781649374172.jpg",
-        bookReviewText: "",
-      });
-      setCharacterCount(0);
-    } catch (err) {
-      console.error(err);
+  const handleChange = (event) => {
+    const { value } = event.target;
+    if (value.length <= 280) {
+      setReview(value);
+      setCharacterCount(value.length);
     }
   };
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-
-    if (name === "bookReviewText" && value.length <= 280) {
-      setFormState({
-        ...formState,
-        [name]: value,
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      await addBookReview({
+        variables: {
+          bookId: id,
+          reviewText: review,
+          username: Auth.getProfile().data.username,
+        },
       });
-      setCharacterCount(value.length);
-    } else {
-      setFormState({
-        ...formState,
-        [name]: value,
-      });
+      setReview("");
+      setCharacterCount(0);
+    } catch (err) {
+      console.error(err);
     }
   };
 
@@ -84,21 +90,21 @@ const BookReviewForm = () => {
           <Heading as="h4" size="lg" mb={6} textAlign="center">
             Add a Book Review
           </Heading>
-          <Image src={formState.image} alt={formState.title} mb={4} />
-          {data ? (
+          <Image src={book.image} alt={book.title} mb={4} />
+          {submitData ? (
             <Text>
               Success! You may now head{" "}
               <Link to="/">back to the homepage.</Link>
             </Text>
           ) : (
-            <form onSubmit={handleFormSubmit}>
+            <form onSubmit={handleSubmit}>
               <FormControl id="title" isRequired mb={4}>
                 <FormLabel>Title</FormLabel>
                 <Input
                   placeholder="Book title"
                   name="title"
                   type="text"
-                  value={formState.title}
+                  value={book.title}
                   readOnly
                 />
               </FormControl>
@@ -108,7 +114,7 @@ const BookReviewForm = () => {
                   placeholder="Book author"
                   name="author"
                   type="text"
-                  value={formState.author}
+                  value={book.author}
                   readOnly
                 />
               </FormControl>
@@ -117,14 +123,16 @@ const BookReviewForm = () => {
                 <Textarea
                   placeholder="Here's a new review..."
                   name="bookReviewText"
-                  value={formState.bookReviewText}
+                  value={review}
                   onChange={handleChange}
                   mb={4}
                 />
                 <Text
                   mb={2}
                   color={
-                    characterCount === 280 || error ? "red.500" : "gray.600"
+                    characterCount === 280 || submitError
+                      ? "red.500"
+                      : "gray.600"
                   }
                 >
                   Character Count: {characterCount}/280
@@ -135,10 +143,10 @@ const BookReviewForm = () => {
               </Button>
             </form>
           )}
-          {error && (
+          {submitError && (
             <Alert status="error" mt={4}>
               <AlertIcon />
-              {error.message}
+              {submitError.message}
             </Alert>
           )}
         </Box>

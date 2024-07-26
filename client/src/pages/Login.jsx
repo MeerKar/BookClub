@@ -36,7 +36,7 @@ const Login = () => {
       console.log("Login mutation data:", data);
       Auth.login(data.login.token);
       console.log("Token stored and user logged in, navigating to /clubs");
-      navigate("/"); // Redirect to the home page or any other page
+      navigate("/clubs");
     } catch (e) {
       console.error("Login error:", e);
     }
@@ -64,7 +64,6 @@ const Login = () => {
                   type="email"
                   value={formState.email}
                   onChange={handleChange}
-                  autoComplete="email"
                 />
               </FormControl>
               <FormControl id="password" isRequired mb={6}>
@@ -75,7 +74,6 @@ const Login = () => {
                   type="password"
                   value={formState.password}
                   onChange={handleChange}
-                  autoComplete="current-password"
                 />
               </FormControl>
               <Button colorScheme="blue" width="100%" type="submit" mb={4}>
