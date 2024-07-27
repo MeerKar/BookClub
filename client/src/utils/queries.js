@@ -39,12 +39,15 @@ export const QUERY_BOOKS = gql`
   }
 `;
 export const QUERY_BOOKSHELF = gql`
-  query getBookshelf {
-    bookshelf {
-      id
+  query getBookshelf($userId: ID!) {
+    bookshelf(userId: $userId) {
+      _id
       title
       author
-      image
+      description
+      book_image
+      primary_isbn10
+      category
     }
   }
 `;
@@ -169,3 +172,13 @@ export const ADD_TO_BOOKSHELF = gql`
 //     }
 //   }
 // `;
+export const ADD_REVIEW = gql`
+  mutation AddReview($bookId: ID!, $reviewText: String!, $userId: ID!) {
+    addReview(bookId: $bookId, reviewText: $reviewText, userId: $userId) {
+      _id
+      reviewText
+      createdAt
+      username
+    }
+  }
+`;

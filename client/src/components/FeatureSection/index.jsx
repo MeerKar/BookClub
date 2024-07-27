@@ -70,6 +70,7 @@ const FeatureSection = () => {
             borderWidth="1px"
             borderRadius="lg"
             overflow="hidden"
+            bg="white"
           >
             <Image src={feature.image} alt={feature.title} />
             <Box p={6} textAlign="center">
@@ -80,8 +81,8 @@ const FeatureSection = () => {
               <Button
                 as={RouterLink}
                 to={feature.link}
-                colorScheme="black"
-                variant="outline"
+                colorScheme="orange"
+                variant="solid"
               >
                 {feature.title}
               </Button>
@@ -117,7 +118,8 @@ const FeatureSection = () => {
                 borderRadius="md"
                 overflow="hidden"
                 p={4}
-                textAlign="center"
+                bg="white"
+                boxShadow="lg"
               >
                 <Heading as="h3" size="md" mb={2}>
                   Fiction
@@ -144,6 +146,14 @@ const FeatureSection = () => {
                     <Text>
                       <strong>Author:</strong> {bestSellerFiction.author}
                     </Text>
+                    <Button
+                      as={RouterLink}
+                      to={`/books/${bestSellerFiction.primary_isbn10}`}
+                      colorScheme="orange"
+                      mt={4}
+                    >
+                      View Book
+                    </Button>
                   </Box>
                 </Flex>
               </Box>
@@ -154,7 +164,8 @@ const FeatureSection = () => {
                 borderRadius="md"
                 overflow="hidden"
                 p={4}
-                textAlign="center"
+                bg="white"
+                boxShadow="lg"
               >
                 <Heading as="h3" size="md" mb={2}>
                   Non-Fiction
@@ -181,6 +192,14 @@ const FeatureSection = () => {
                     <Text>
                       <strong>Author:</strong> {bestSellerNonFiction.author}
                     </Text>
+                    <Button
+                      as={RouterLink}
+                      to={`/books/${bestSellerNonFiction.primary_isbn10}`}
+                      colorScheme="orange"
+                      mt={4}
+                    >
+                      View Book
+                    </Button>
                   </Box>
                 </Flex>
               </Box>

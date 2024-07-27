@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import {
   Box,
@@ -15,25 +15,22 @@ import { fetchBestSellers } from "../components/API"; // Ensure this path is cor
 import { useMutation } from "@apollo/client";
 import Auth from "../utils/auth";
 import { ADD_TO_BOOKSHELF } from "../utils/mutations";
-// import { QUERY_SINGLE_BOOK } from "../utils/queries";
+import CommentForm from "../components/CommentForm";
 
 const SingleBook = () => {
   const { id } = useParams(); // Ensure this is 'id' to match the URL parameter
 
-  const [book, setBook] = React.useState(null);
-  const [loading, setLoading] = React.useState(true);
-  const [error, setError] = React.useState(null);
+  const [book, setBook] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const fetchBook = async () => {
       try {
         const allBooks = await fetchBestSellers("hardcover-fiction");
         console.log("Fetched Books:", allBooks); // Debug: log all fetched books
 
-        const foundBook = allBooks.find((book) => {
-          console.log("Comparing:", book.primary_isbn10, "with", id);
-          return book.primary_isbn10 === id;
-        });
+        const foundBook = allBooks.find((book) => book.primary_isbn10 === id);
         console.log("Found Book:", foundBook); // Debug: log the found book
         setBook(foundBook);
       } catch (error) {
@@ -42,6 +39,7 @@ const SingleBook = () => {
         setLoading(false);
       }
     };
+
     if (id) {
       fetchBook();
     }
@@ -130,6 +128,7 @@ const SingleBook = () => {
             >
               Add to MyBookshelf
             </Button>
+            <CommentForm bookId={id} />
           </VStack>
         </Box>
       </Flex>

@@ -10,6 +10,7 @@ import { Outlet } from "react-router-dom";
 import { Box, Flex } from "@chakra-ui/react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+// import FeatureSection from "./components/FeatureSection";
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({

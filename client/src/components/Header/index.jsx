@@ -35,7 +35,7 @@ const Header = () => {
             size="lg"
             fontWeight="bold"
             fontStyle="italic"
-            color="#333333"
+            color="#C43E12"
           >
             Readers Den
           </Heading>

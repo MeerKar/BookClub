@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
-import { Box, Heading, Text, Button, Image } from "@chakra-ui/react";
+import { Box, Heading, Text, Image } from "@chakra-ui/react";
 
 const BookList = ({
   books,
-  title,
+  // title,
   author,
-  showTitle = true,
+  // showTitle = true,
   showUsername = true,
   showAuthor = true,
 }) => {

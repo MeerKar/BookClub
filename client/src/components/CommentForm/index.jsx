@@ -18,6 +18,7 @@ const CommentForm = ({ bookId, onAddComment }) => {
       console.error("You need to be logged in to add a comment");
       return;
     }
+
     try {
       const { data } = await addReview({
         variables: {

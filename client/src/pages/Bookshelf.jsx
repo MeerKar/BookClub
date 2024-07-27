@@ -82,7 +82,7 @@ const Bookshelf = () => {
                 <Heading as="h2" size="lg" mb={4}>
                   {category}
                 </Heading>
-                <SimpleGrid columns={[1, null, 3]} spacing={4}>
+                <SimpleGrid columns={[1, null, 5]} spacing={4}>
                   {books[category].map((book, idx) => (
                     <BookCard
                       key={idx}

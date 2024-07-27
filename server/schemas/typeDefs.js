@@ -21,13 +21,15 @@ const typeDefs = `
     reviews: [Review]
   }
 
+  
+
   type Review {
-    id: ID
-    reviewText: String
-    userId: String!
-    createdAt: String
-    bookId: ID!
+    _id: ID!
+    reviewText: String!
+    createdAt: String!
+    username: String!
   }
+
 
   type Club {
     _id: ID

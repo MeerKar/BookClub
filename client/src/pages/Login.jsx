@@ -35,8 +35,8 @@ const Login = () => {
       const { data } = await login({ variables: { ...formState } });
       console.log("Login mutation data:", data);
       Auth.login(data.login.token);
-      console.log("Token stored and user logged in, navigating to /clubs");
-      navigate("/clubs");
+      console.log("Token stored and user logged in, navigating to /");
+      navigate("/");
     } catch (e) {
       console.error("Login error:", e);
     }
