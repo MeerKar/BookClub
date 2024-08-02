@@ -2,6 +2,7 @@ const { User, Book, Club, Review, Rating } = require("../models");
 const { signToken } = require("../utils/auth");
 const { GraphQLScalarType } = require("graphql");
 const { Kind } = require("graphql/language");
+const { Types } = require("mongoose");
 
 const resolvers = {
   Query: {
@@ -79,6 +80,10 @@ const resolvers = {
       return book;
     },
     addReview: async (parent, { bookId, reviewText, userId }, context) => {
+      if (!bookId || !reviewText || !userId) {
+        throw new Error("All fields are required");
+      }
+
       const review = await Review.create({ bookId, reviewText, userId });
       return review;
     },

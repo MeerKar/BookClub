@@ -1,6 +1,7 @@
 import ReactDOM from "react-dom/client";
 import { ChakraProvider } from "@chakra-ui/react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import App from "./App";
 import Home from "./pages/Home";
 import Signup from "./pages/Signup";
@@ -14,7 +15,6 @@ import JoinClub from "./pages/JoinClub";
 import MyBookshelf from "./pages/MyBookshelf";
 import Bookshelf from "./pages/Bookshelf";
 import Auth from "./utils/auth";
-
 const ProtectedRoute = ({ element }) => {
   return Auth.loggedIn() ? element : <Navigate to="/login" />;
 };

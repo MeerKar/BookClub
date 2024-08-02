@@ -18,7 +18,6 @@ const CommentForm = ({ bookId, onAddComment }) => {
       console.error("You need to be logged in to add a comment");
       return;
     }
-
     try {
       const { data } = await addReview({
         variables: {
@@ -78,7 +77,7 @@ const CommentForm = ({ bookId, onAddComment }) => {
               onChange={handleChange}
               resize="vertical"
             />
-            <Button type="submit" colorScheme="teal">
+            <Button type="submit" colorScheme="orange">
               Add Comment
             </Button>
           </VStack>
@@ -86,11 +85,11 @@ const CommentForm = ({ bookId, onAddComment }) => {
       ) : (
         <Text>
           You need to be logged in to share your thoughts. Please{" "}
-          <Link to="/login" style={{ color: "teal" }}>
+          <Link to="/login" style={{ color: "orange" }}>
             login
           </Link>{" "}
           or{" "}
-          <Link to="/signup" style={{ color: "teal" }}>
+          <Link to="/signup" style={{ color: "orange" }}>
             signup
           </Link>
           .

@@ -56,7 +56,7 @@ const SingleBook = () => {
 
   if (loading) {
     return (
-      <Flex justify="center" align="center" minH="100vh">
+      <Flex justify="center" align="center" minH="100vh" bg="#f8ede3">
         <Spinner size="xl" />
       </Flex>
     );
@@ -65,7 +65,7 @@ const SingleBook = () => {
   if (error) {
     console.error("Error fetching book data:", error);
     return (
-      <Container maxW="container.md">
+      <Container maxW="container.md" bg="#f8ede3">
         <Flex direction="column" align="center" justify="center" minH="100vh">
           <Text fontSize="xl" color="red.500">
             An error occurred: {error}
@@ -77,7 +77,7 @@ const SingleBook = () => {
 
   if (!book) {
     return (
-      <Container maxW="container.md">
+      <Container maxW="container.md" bg="#f8ede3">
         <Flex direction="column" align="center" justify="center" minH="100vh">
           <Text fontSize="xl" color="red.500">
             Book not found
@@ -98,7 +98,7 @@ const SingleBook = () => {
   };
 
   return (
-    <Container maxW="container.md">
+    <Container maxW="container.md" bg="#f8ede3">
       <Flex direction="column" align="center" justify="center" minH="100vh">
         <Box w="100%" p={6} boxShadow="md" borderRadius="md" textAlign="center">
           {book.book_image && (
